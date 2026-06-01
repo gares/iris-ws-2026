@@ -6,7 +6,7 @@ color: rocq
 # like them? see https://unsplash.com/collections/94734566/slidev
 # background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: "Elpi: rule-based extension language"
+title: "Elpi: manipulating Rocq syntax made easy"
 info: |
   ## Slidev Starter Template
   Presentation slides for developers.
@@ -21,56 +21,21 @@ drawings:
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 layout: cover
-ximage: logo.png
+image: logo.png
 transition: fade
 level: 2
 hideInToc: true
 ---
 
-# Elpi: rule-based extension language
+# Elpi: manipulating Rocq syntax made easy
 
-<style>
-  tr { border-style: none; padding-top: 0.1rem; padding-bottom: 0.1rem; }
-  td { border-style: none; padding-top: 0.1rem; padding-bottom: 0.1rem; text-align: left !important; }
-</style>
-<table><tbody>
-<tr ><td style="text-align: right !important;">Candidate:</td><td>Enrico Tassi</td></tr>
-<tr ><td style="text-align: right !important;">Jury:</td><td>Catherine Dubois, Professeur, ENSIIE </td></tr>
-<tr ><td ></td><td>Dale Miller, Directeur de Recherche, Inria</td></tr>
-<tr ><td ></td><td>Brigitte Pientka, Full Professor, McGill University</td></tr>
-<tr ><td ></td><td>Alberto Momigliano, Associate Professor, University of Milan</td></tr>
-<tr ><td ></td><td>Christine Paulin-Mohring, Professeur, Université Paris-Saclay</td></tr>
-<tr ><td ></td><td>Yves Bertot, Directeur de Recherche, Inria</td></tr>
-</tbody></table>
+<div style="width:330px;margin-left:auto;margin-right:auto">
 
-<div style="text-align: right !important;">HDR 9/1/2026</div>
+![Elpi logo](/logo.png "Logo")
 
+</div>
+<div style="text-align: right !important;">Iris WS 10/6/2026</div>
 
-<!--
-First of all thanks the orga
--->
-
----
-layout: default
-title: The title
-level: 2
----
-
-# Elpi: [rule-based]{style="background-color: var(--highlight-one)"} [extension language]{style="background-color: var(--highlight-two)"}
-
-<br/>
-
-## [context]{style="background-color: var(--highlight-two)"} &nbsp; extension language (for an ITP written in OCaml)
-
-<!--- no such a thing as general purpose PL-->
-- there is a *host application* and a *host programming language*
-- the opposite of "general purpose" programming language
-
-## [the key]{style="background-color: var(--highlight-one)"} &nbsp; rule-based
-
-- binders and context management
-- holes and scheduling
-- self extension
 
 
 ---
@@ -83,106 +48,6 @@ level: 2
 
 <Toc minDepth="1" maxDepth="1" />
 
-
-
----
-layout: section
-color: rocq
----
-
-# The host application
-
----
-layout: image
-image: coq-brain.png
-title: The arcitecture of an ITP
-backgroundSize: 40%
-#transition: slide-left
-level: 2
----
-
-# The architecture of an ITP
-
----
-title: The elaborator
-level: 2
----
-
-# The elaborator...
-
-<style>
-  tr { border-style: none; padding-top: 0rem; padding-bottom: 0rem; }
-  td { border-style: none; padding-top: 0rem; padding-bottom: 0rem; text-align: left !important; }
-</style>
-
-<v-clicks>
-<table>
-<tbody>
-<tr><td> 
-
-$\lambda x.x + 1$
-
-</td></tr>
-<tr><td>
-
-$\lambda x :~ ?_T.~ \mathrm{add~} x~ (S~ O)$
-
-</td><td>
-
-$\Sigma = \{\; ?_T \mapsto \mathrm{some~ type} \;\}$
-
-</td></tr>
-<tr><td>
-
-$\lambda x :~ ?_T.~ \mathrm{add~} ?_s~ x~ (S~ O)$
-
-</td><td>
-
-$\Sigma = \{\; ?_T \mapsto \mathrm{some~ type};  \qquad\quad\;\;?_s \mapsto \mathrm{some~ record} \;\}$
-
-</td><td><mdi-database-search/></td></tr>
-<tr><td>
-
-$\lambda x :~ ?_T.~ \mathrm{add~} ?_{s[x]}~ x~ (S~ O)$
-
-</td><td>
-
-$\Sigma = \{\; ?_T \mapsto \mathrm{some~ type}; \;x :~?_T \vdash ?_s \mapsto \mathrm{some~ record} \;\}$
-
-</td><td><mdi-database-search/></td></tr>
-<tr><td>
-
-$\lambda \;\, :~ ?_T.~ \mathrm{add~} ?_{s[\$1]}~ \$1~ (S~ O)$
-
-</td><td>
-
-$\Sigma = \{\; ?_T \mapsto \mathrm{some~ type}; \;\;\,\; :~?_T \vdash ?_s \mapsto \mathrm{some~ record} \;\}$
-
-</td><td><mdi-database-search/></td></tr>
-</tbody></table>
-</v-clicks>
-
-# ...and its daemons
-
-<v-clicks at="2">
-
-- holes (pointers in a heap)
-- ... and to be filled by user-given rules (database)
-
-</v-clicks>
-
-<v-clicks at="4">
-
-- reduction/substitution (scope)
-- binders (De Bruijn indexes)
-
-</v-clicks>
-
-<!--
-- <v-click at="2">holes: pointers <mdi-biohazard/></v-click>
-- <v-click at="4">reduction/substitution <mdi-bottle-tonic-skull/></v-click>
-- <v-click at="5">binders: numbers <mdi-bomb/></v-click>
--->
 
 
 
@@ -351,127 +216,26 @@ backgroundSize: 50%
 
 # Elpi = $\lambda$Prolog + CHR
 
-
----
-layout: two-cols-header
-level: 2
-backgroundSize: 50%
----
-
-# Elpi's take on locally nameless
-
-<style>
-.slidev-code { font-size: 1.4em !important; }
-.slidev-code-magic-move { --slidev-code-font-size: 1.4em !important; }
-</style>
-
-
-<br/>
-
-#### De Bruijn introduced two notations for bound variables: indexes and levels
-
-::left::
-
-#### $\beta$-reduction (with indexes)
-
-$$
-\begin{array}{l}
-\lambda x.(\lambda y.\lambda z.f\ x_2\ y_1\ z_0)\ x_0\ \to_\beta \\
-\lambda x.\quad\;\;\,\lambda z.f\ x_1\ x_1\ z_0
-\end{array}
-$$
-
-
-<br/>
-
-#### Moving under a binder (with indexes)
-
-```elpi
-⊢ lam x\ lam y\ app x₁ y₀
-```
-
-````md magic-move
-
-```
-```
-
-```elpi
-c₀ ⊢ (x\ lam y\ app x₁ y₀) c₀
-```
-
-```elpi
-c₀ ⊢ lam y\ app c₀ y₀
-```
-
-```elpi
-c₀ c₁ ⊢ (y\ app c₀ y₀) c₁
-```
-
-```elpi
-c₀ c₁ ⊢ app c₀ c₁
-```
-
-````
-
-::right::
-
-#### $\beta$-reduction (with levels)
-
-
-$$
-\begin{array}{l}
-\lambda x.(\lambda y.\lambda z.f\ x_0\ y_1\ z_2)\ x_0\ \to_\beta\\
-\lambda x.\quad\;\;\,\lambda z.f\ x_0\ x_0\ z_1
-\end{array}
-$$
-
-<br/>
-
-#### Moving under a binder (with levels)
-
-```elpi
-⊢ lam x\ lam y\ app x₀ y₁
-```
-
-````md magic-move
-
-```
-```
-
-```elpi
-c₀ ⊢ (x\ lam y\ app x₀ y₁) c₀
-```
-
-```elpi
-c₀ ⊢ lam y\ app c₀ y₁
-```
-
-```elpi
-c₀ c₁ ⊢ (y\ app c₀ y₁) c₁
-```
-
-```elpi
-c₀ c₁ ⊢ app c₀ c₁
-```
-
-````
-
-<v-click at="9">
-
-#### Benefits
-- Crossing a binder is cheap
-- Indexing the context is easy
-
-</v-click>
-
-
-
 ---
 layout: section
 color: rocq
 ---
 
 # The integration in Rocq
+
+---
+layout: image-right
+image: onion.png
+backgroundSize: 80%
+transition: fade
+level: 2
+---
+
+# The plan
+
+- first commands
+- then tactics
+- then elaboration
 
 
 ---
@@ -491,242 +255,304 @@ level: 2
 
 - Databases of rules
 - Extensive API
+  * Binding OCaml is easy
+  * Rocq vernacular like APIs
+  * Json/XML (for fun)
 
   ![API example](/api.png "api")
 
 
 ---
 layout: two-cols-header
-transition: fade
 level: 2
 ---
 
-# Integration with Rocq: from Prop to bool (1/3)
+# Commands
+
+DSL to declare a hierarchy of interfaces
 
 :: left ::
 
-````md magic-move
+* xxxx
 
-```coq
-Inductive is_even : nat -> Prop := ...
-
-Fixpoint even (n : nat) : bool := ...
-
-Lemma evenP n : reflect (is_even n) (even n).
-
-
-Lemma andP  {P Q : Prop} {p q : bool} :
-  reflect P p -> reflect Q q ->
-    reflect (P /\ Q) (p && q).
-
-
-Lemma elimT {P b} : reflect P b -> b = true -> P.
-
-Lemma test : is_even 6 /\ is_even 4.
-Proof.
-  refine (elimT (andP (evenP 6) (evenP 4)) _).
-
-
-  (* even 6 && even 4 = true *)
-  simpl. trivial.
-Qed.
-```
-
-```coq
-Inductive is_even : nat -> Prop := ...
-
-Fixpoint even (n : nat) : bool := ...
-
-Lemma evenP n : reflect (is_even n) (even n).
-
-
-Lemma andP  {P Q : Prop} {p q : bool} :
-  reflect P p -> reflect Q q ->
-    reflect (P /\ Q) (p && q).
-
-
-Lemma elimT {P b} : reflect P b -> b = true -> P.
-
-Lemma test : is_even 6 /\ is_even 4.
-Proof.
-  (* refine (elimT (andP (evenP 6) (evenP 4)) _). *)
-  to_bool.
-
-  (* even 6 && even 4 = true *)
-  simpl. trivial.
-Qed.
-```
-
-````
 
 :: right ::
+
+```coq
+xxx
+```
 
 ---
 layout: two-cols-header
-transition: fade
 level: 2
 ---
 
-# Integration with Rocq: from Prop to bool (2/3)
+# Derive
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
 
 :: left ::
 
-```coq
-Inductive is_even : nat -> Prop := ...
+* xxxx
 
-Fixpoint even (n : nat) : bool := ...
-
-Lemma evenP n : reflect (is_even n) (even n).
-
-
-Lemma andP  {P Q : Prop} {p q : bool} :
-  reflect P p -> reflect Q q ->
-    reflect (P /\ Q) (p && q).
-
-
-Lemma elimT {P b} : reflect P b -> b = true -> P.
-
-Lemma test : is_even 6 /\ is_even 4.
-Proof.
-  (* refine (elimT (andP (evenP 6) (evenP 4)) _). *)
-  to_bool.
-
-  (* even 6 && even 4 = true *)
-  simpl. trivial.
-Qed.
-```
 
 :: right ::
 
 ```coq
-(* [tb P R] finds R : reflect P _ *)
-Elpi Tactic to_bool.
-Elpi Accumulate lp:{{
-  func tb term -> term.
-  tb {{ is_even lp:N }} {{ evenP lp:N }}.
-  tb {{ lp:P /\ lp:Q }} {{ andP lp:PP lp:QQ }} :- tb P PP, tb Q QQ.
+xxx
+```
 
-  solve (goal _ _ Ty _ _ as G) GL :-
-    tb Ty P, refine {{ elimT lp:P _ }} G GL.              }}.
+---
+layout: two-cols-header
+level: 2
+---
+
+# NES
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
+```
+
+---
+layout: two-cols-header
+level: 2
+---
+
+# Tactics
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
+```
+
+---
+layout: two-cols-header
+level: 2
+---
+
+# Algebra tactics
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
+```
+
+---
+layout: two-cols-header
+level: 2
+---
+
+# Trocq
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
 ```
 
 
 ---
 layout: two-cols-header
-transition: fade
 level: 2
 ---
 
-# Integration with Rocq: from Prop to bool (3/3)
+# Elaboration
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
 
 :: left ::
 
-```coq
-Inductive is_even : nat -> Prop := ...
-Fixpoint even (n : nat) : bool := ...
+* xxxx
 
-Lemma evenP n : reflect (is_even n) (even n).
-Register evenP.
-(* tb {{ is_even lp:N }} {{ evenP lp:N }} *)
-
-Lemma andP  {P Q : Prop} {p q : bool} :
-  reflect P p -> reflect Q q ->
-    reflect (P /\ Q) (p && q).
-Register andP.
-(* tb {{ lp:P /\ lp:Q }} {{ andP lp:PP lp:QQ }} :- 
-     tb P PP, tb Q QQ. *)
-
-Lemma elimT {P b} : reflect P b -> b = true -> P.
-Lemma test : is_even 6 /\ is_even 4.
-Proof.
-  (* refine (elimT (andP (evenP 6) (evenP 4)) _). *)
-  to_bool.
-
-  (* even 6 && even 4 = true *)
-  simpl. trivial.
-Qed.
-```
 
 :: right ::
 
-````md magic-move
+```coq
+xxx
+```
+
+
+---
+layout: two-cols-header
+level: 2
+---
+
+# Coercion
+
+<div class="authors">
+
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
 
 ```coq
-(* [tb P R] finds R : reflect P _ *)
-Elpi Db tb.db lp:{{ func tb term -> term. }}.
-
-Elpi Tactic to_bool.
-Elpi Accumulate Db tb.db.
-Elpi Accumulate lp:{{
-  solve (goal _ _ Ty _ _ as G) GL :-
-    tb Ty P, refine {{ elimT lp:P _ }} G GL.              }}.
-
-Elpi Command Register.
-Elpi Accumulate Db tb.db.
-Elpi Accumulate lp:{{
-  func compile term, term, list prop -> prop.
-
-  main [str S] :-
-    coq.locate S GR,
-    coq.env.typeof GR Ty,
-    compile Ty (global GR) [] C,
-    coq.elpi.accumulate _ "tb.db" (clause _ _ C).        }}.
-
+xxx
 ```
 
-```elpi
-% [compile Ty R Hyps C] invariant R : Ty
-func compile term, term, list prop -> prop.
+---
+layout: two-cols-header
+level: 2
+---
 
-compile {{ reflect lp:P _ }} R Todo (tb P R :- Todo).
+# Canonical Structures
 
-compile {{ reflect lp:S _ -> lp:Ty }} R Todo (pi h\ C h) :- !,
-  pi h\ compile Ty {{ lp:R lp:h }} [tb S h|Todo] (C h).
+<div class="authors">
 
-compile {{ forall x, lp:(Ty x) }} R Todo (pi x\ C x) :-
-  pi x\ compile (Ty x) {{ lp:R lp:x }} Todo (C x).
+![proux01](/avatars/proux01.jpg)
+
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
 ```
 
-```elpi
-% [compile Ty R Hyps C] invariant R : Ty
-func compile term, term, list prop -> prop.
+---
+layout: two-cols-header
+level: 2
+---
 
-compile {{ reflect lp:P _ }} R Todo (tb P R :- Todo).
+# Type Classes
 
-compile {{ reflect lp:S _ -> lp:Ty }} R Todo (pi h\ C h) :- !,
-  pi h\ compile Ty {{ lp:R lp:h }} [tb S h|Todo] (C h).
+<div class="authors">
 
-compile {{ forall x, lp:(Ty x) }} R Todo (pi x\ C x) :-
-  pi x\ compile (Ty x) {{ lp:R lp:x }} Todo (C x).
+![proux01](/avatars/proux01.jpg)
 
-% compile {{ forall n, reflect (is_even n) (even n) }} {{ evenP }} []
-%   (pi n\ tb {{ is_even lp:n }} {{ evenP lp:n }} :- [])
+
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
 ```
 
-```elpi
-% [compile Ty R Hyps C] invariant R : Ty
-func compile term, term, list prop -> prop.
+---
+layout: two-cols-header
+level: 2
+---
 
-compile {{ reflect lp:P _ }} R Todo (tb P R :- Todo).
+# Record Builder
 
-compile {{ reflect lp:S _ -> lp:Ty }} R Todo (pi h\ C h) :- !,
-  pi h\ compile Ty {{ lp:R lp:h }} [tb S h|Todo] (C h).
+<div class="authors">
 
-compile {{ forall x, lp:(Ty x) }} R Todo (pi x\ C x) :-
-  pi x\ compile (Ty x) {{ lp:R lp:x }} Todo (C x).
+![proux01](/avatars/proux01.jpg)
 
-% compile {{ forall n, reflect (is_even n) (even n) }} {{ evenP }} []
-%   (pi n\ tb {{ is_even lp:n }} {{ evenP lp:n }} :- [])
 
-% compile {{ forall P Q p q, reflect P p -> reflect Q q ->
-%              reflect (P /\ Q) (p && q) }} {{ andP }} []
-%   (pi P Q p q PP QQ\
-%        tb {{ lp:P /\ lp:Q }} {{ andP lp:PP lp:QQ }} :-
-%           [tb Q QQ, tb P PP])
+</div>
+
+DSL to declare a hierarchy of interfaces
+
+:: left ::
+
+* xxxx
+
+
+:: right ::
+
+```coq
+xxx
 ```
-
-````
-
 
 ---
 layout: section
@@ -1237,35 +1063,20 @@ layout: default
 level: 2
 ---
 
-# Perspectives - Elpi takes advantage of Rocq
+# In the pipes
 
-- Mechanization of Elpi in Rocq (durability)
-  - operational semantics of $\lambda$Prolog + cut (done, by Fissore)
-  - determinacy analysis (control part done, HO part ongoing)
-  - term representation, unifier (todo and scary)
-- Mechanization of $\mathcal{G}$ in Rocq 
-  - metatheory of $\mathcal{G}$ (warming up)
-  - proofs about Elpi code in Rocq
-
-
----
-layout: default
-level: 2
----
-
-# Perspectives - Rocq takes advantage of Elpi
-
-- Rocq-Elpi into Rocq proper (use Elpi in lower layers)
-  - need HOAS encoding for mutual fixpoints (and mutual inductive types)
-  - functional (rule based) syntax could be more familiar to Rocq users
-  - user manual definitely needed
+- Full gallina (mfix and minductive)
+- More hooks
+  - printing (box language already bound)
+  - unification
+  - elaborator
+- Better syntax
 - Memoization (tabling via SLG)
   - no good public benchmark, but BedRock/BlueRock/SkyLabs-AI needs it
   - loop detection could help beginners
 
 ---
-layout: two-cols-header
-image: logo.png
+layout: default
 backgroundSize: 80%
 level: 2
 title: Thanks
@@ -1275,29 +1086,44 @@ title: Thanks
 
 <div style="text-align:center">
 
-https://github.com/LPCIC/elpi/
+https://github.com/LPCIC/coq-elpi/
 
 </div>
 
-:: right ::
 
 <div class="vauthors">
 
 
 <br/>
+<br/>
 
 ![Armael](/avatars/Armael.jpg)
+![Blaisorblade](/avatars/Blaisorblade.jpg)
+![CohenCyril](/avatars/CohenCyril.jpg)
+![FissoreD](/avatars/FissoreD.jpg)
+![JasonGross](/avatars/JasonGross.jpg)
+![MSoegtropIMC](/avatars/MSoegtropIMC.jpg)
+![SimonBoulier](/avatars/SimonBoulier.jpg)
+![SkySkimmer](/avatars/SkySkimmer.jpg)
+![ThomasPortet](/avatars/ThomasPortet.jpg)
+![Tragicus](/avatars/Tragicus.jpg)
+![Tvallejos](/avatars/Tvallejos.jpg)
+![Villetaneuse](/avatars/Villetaneuse.jpg)
+![VojtechStep](/avatars/VojtechStep.jpg)
+![XVilka](/avatars/XVilka.jpg)
+![Zimmi48](/avatars/Zimmi48.jpg)
+![affeldt-aist](/avatars/affeldt-aist.jpg)
+![agontard](/avatars/agontard.jpg)
+![amahboubi](/avatars/amahboubi.jpg)
 ![artagnon](/avatars/artagnon.jpg)
 ![bgregoir](/avatars/bgregoir.jpg)
-![Blaisorblade](/avatars/Blaisorblade.jpg)
 ![cdunchev](/avatars/cdunchev.jpg)
-![CohenCyril](/avatars/CohenCyril.jpg)
 ![dwarfmaster](/avatars/dwarfmaster.jpg)
+![ebmoon](/avatars/ebmoon.jpg)
 ![ecranceMERCE](/avatars/ecranceMERCE.jpg)
 ![ejgallego](/avatars/ejgallego.jpg)
 ![eponier](/avatars/eponier.jpg)
-![FissoreD](/avatars/FissoreD.jpg)
-<!-- ![gares](/avatars/gares.jpg) -->
+![gares](/avatars/gares.jpg)
 ![gdufrc](/avatars/gdufrc.jpg)
 ![herbelin](/avatars/herbelin.jpg)
 ![jfehrle](/avatars/jfehrle.jpg)
@@ -1305,10 +1131,12 @@ https://github.com/LPCIC/elpi/
 ![kit-ty-kate](/avatars/kit-ty-kate.jpg)
 ![lthls](/avatars/lthls.jpg)
 ![lukovdm](/avatars/lukovdm.jpg)
+![mattam82](/avatars/mattam82.jpg)
 ![maximedenes](/avatars/maximedenes.jpg)
 ![mb64](/avatars/mb64.jpg)
-![MSoegtropIMC](/avatars/MSoegtropIMC.jpg)
 ![palmskog](/avatars/palmskog.jpg)
+![patrick-nicodemus](/avatars/patrick-nicodemus.jpg)
+![patricoferris](/avatars/patricoferris.jpg)
 ![pedrotst](/avatars/pedrotst.jpg)
 ![phikal](/avatars/phikal.jpg)
 ![pi8027](/avatars/pi8027.jpg)
@@ -1319,65 +1147,20 @@ https://github.com/LPCIC/elpi/
 ![robblanco](/avatars/robblanco.jpg)
 ![sacerdot](/avatars/sacerdot.jpg)
 ![shonfeder](/avatars/shonfeder.jpg)
-![SimonBoulier](/avatars/SimonBoulier.jpg)
-![SkySkimmer](/avatars/SkySkimmer.jpg)
 ![smuenzel](/avatars/smuenzel.jpg)
-![Tragicus](/avatars/Tragicus.jpg)
+![thery](/avatars/thery.jpg)
+![thomas-lamiaux](/avatars/thomas-lamiaux.jpg)
 ![vbgl](/avatars/vbgl.jpg)
-![VojtechStep](/avatars/VojtechStep.jpg)
 ![voodoos](/avatars/voodoos.jpg)
 ![wdeweijer](/avatars/wdeweijer.jpg)
 ![whonore](/avatars/whonore.jpg)
-![XVilka](/avatars/XVilka.jpg)
 ![ybertot](/avatars/ybertot.jpg)
 ![yoichi-at-bedrock](/avatars/yoichi-at-bedrock.jpg)
-![Zimmi48](/avatars/Zimmi48.jpg)
-
-</div>
-
-<br/>
-
-:: left ::
-
-<!--![logo](/logo.png){style="width:40%; margin-left:auto; margin-right: auto;"}-->
-
-<div style="text-align:justify">
-
-Pedro Abreu, Yves Bertot, Frederic Besson, Rob Blanco, Simon Boulier, Luc Chabassier, Cyril Cohen, Enzo Crance, Maxime Dénès, Jim Fehrle, Davide Fissore, Paolo G. Giarrusso, Gaëtan Gilbert, Benjamin Gregoire, Hugo Herbelin, Yoichi Hirai, Jasper Hugunin, Emilio Jesus Gallego Arias, Jan-Oliver Kaiser, Philip Kaludercic, Chantal Keller, Vincent Laporte, Jean-Christophe Léchenet, Rodolphe Lepigre, Karl Palmskog, Pierre-Marie Pédrot, Ramkumar Ramachandra, Pierre Roux, Pierre Roux, Claudio Sacerdoti Coen, Kazuhiko Sakaguchi, Matthieu Sozeau, Gordon Stewart, David Swasey, Alexey Trilis, Quentin Vermande, Théo Zimmermann, wdewe, whonore 
-
-</div>
-
-
----
-layout: two-cols-header
-image: logo.png
-backgroundSize: 80%
-level: 2
-title: Thanks
----
-
-# Thanks for support and motivation! {style="text-align:center"}
-
-
-:: right ::
-
-<div class="vfamily">
-
-![anna](./public/anna.jpg){style="object-fit: contain;"}
-
-</div>
-
-:: left ::
-
-<div class="vfamily">
-
-![cinzia](./public/cinzia.jpeg){style="width: 85%"}
 
 </div>
 
 ---
 layout: image-right
-image: grill.svg
 backgroundSize: 80%
 level: 2
 title: Thanks
@@ -1385,22 +1168,4 @@ title: Thanks
 
 # Thanks for listening! {style="text-align:center"}
 
-<br/>
-
-[Elpi: rule-based extension language]{style="font-weight: bold"}
-
-<style>
-  tr { border-style: none; padding-top: 0.1rem; padding-bottom: 0.1rem; }
-  td { border-style: none; padding-top: 0.1rem; padding-bottom: 0.1rem; text-align: left !important; }
-</style>
-<table><tbody>
-<tr ><td style="text-align: right !important;">Candidate:</td><td>Enrico Tassi</td></tr>
-<tr ><td style="text-align: right !important;">Date:</td><td>9/1/2026</td></tr>
-<tr ><td style="text-align: right !important;">Jury:</td><td>Catherine Dubois</td></tr>
-<tr ><td ></td><td>Dale Miller</td></tr>
-<tr ><td ></td><td>Brigitte Pientka</td></tr>
-<tr ><td ></td><td>Alberto Momigliano</td></tr>
-<tr ><td ></td><td>Christine Paulin-Mohring</td></tr>
-<tr ><td ></td><td>Yves Bertot</td></tr>
-</tbody></table>
 
