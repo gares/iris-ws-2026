@@ -535,7 +535,7 @@ layout: two-cols-header
 level: 2
 ---
 
-# Elaboration: coercion hook
+# Elaboration: Coercion hook
 
 <div class="authors">
 
@@ -602,34 +602,6 @@ layout: two-cols-header
 level: 2
 ---
 
-# Elaborator: Type Classes hook
-
-<div class="authors">
-
-![FissoreD](/avatars/FissoreD.jpg)
-
-
-</div>
-
-Replace TC solver with an Elpi program
-
-:: left ::
-
-* Observer on `Class` and `Instance`
-* Compiles instances into Elpi rules
-* Infers instances running an Elpi program
-
-:: right ::
-
-```coq
-xxx
-```
-
----
-layout: two-cols-header
-level: 2
----
-
 # Elaborator: Record Builder
 
 <div class="authors">
@@ -673,134 +645,44 @@ Check fun x : foo =>
   « x with a := 3 ».
 ```
 
----
-layout: section
-color: rocq
----
-
-# The good company
-
-https://github.com/rocq-community/metaprogramming-rosetta-stone
 
 ---
-transition: fade
-zoom: 0.75
+layout: two-cols-header
 level: 2
 ---
 
-# Comparison
+# Elaborator: Type Classes hook
 
-<table>
+<div class="authors">
 
-<thead>
-<tr style="border-bottom-width: 4px"> <th></th> <th>Elpi</th> <th>Ltac2</th> <th>MetaRocq</th> </tr>
-</thead>
-<tbody>
-
-<tr> <td>Gallina</td>
-  <td>
-    <icon-park-twotone-pie-seven/>
-    <br/><small>no mutual fix/ind</small>
-  </td>
-  <td>
-    <icon-park-twotone-round/>
-  </td>
-  <td>
-    <icon-park-twotone-round/>
-  </td>
-</tr>
-
-<tr> <td>Bound Variables</td>
-  <td>
-    <icon-park-twotone-round/>
-  </td>
-  <td>
-    <icon-park-twotone-pie-three/>
-    <br/><small>quotations</small>
-
-  </td>
-  <td>
-    <icon-park-twotone-pie-one/>
-    <br/><small>toplevel quotation</small>
-  </td>
-</tr>
-
-<tr style="border-bottom-width: 4px"> <td>Holes</td>
-  <td>
-    <icon-park-twotone-round/>
-  </td>
-  <td>
-    <icon-park-twotone-pie-five/>
-    <br/><small>tactic monad</small>
-
-  </td>
-  <td>
-    <icon-park-twotone-pie-one/>
-    <br/><small>only AST</small>
-  </td>
-</tr>
-
-<tr> <td>Proof API</td>
-  <td>
-    <icon-park-twotone-pie-four/>
-    <br/><small>weak ltac1 bridge</small>
-  </td>
-  <td>
-    <icon-park-twotone-round/>
-    <br/><small>(sufficiently close)</small>
-  </td>
-  <td>
-    <icon-park-twotone-pie-one/>
-    <br/><small>only TC search, obligations</small>
-  </td>
-</tr>
-
-<tr style="border-bottom-width: 4px"> <td>Vernacular API</td>
-  <td>
-    <icon-park-twotone-pie-seven/>
-    <br/><small>no notations</small>
-  </td>
-  <td>
-    <material-symbols-circle-outline/>
-  </td>
-  <td>
-    <icon-park-twotone-pie-three/>
-    <br/><small>only env, obligations</small>
-  </td>
-</tr>
-
-<tr style="border-bottom-width: 4px"> <td>Elaborator API</td>
-  <td>
-    <icon-park-twotone-pie-six/>
-    <br/><small>no error locations</small>
-  </td>
-  <td>
-    <material-symbols-circle-outline/>
-  </td>
-  <td>
-    <material-symbols-circle-outline/>
-  </td>
-</tr>
+![FissoreD](/avatars/FissoreD.jpg)
 
 
-<tr style="border-bottom-width: 4px"> <td>Reasoning logic</td>
-  <td>
-    <icon-park-twotone-pie-one/>
-    <br/><small>Abella-mode</small>
-  </td>
-  <td>
-    <material-symbols-circle-outline/>
-  </td>
-  <td>
-    <icon-park-twotone-pie-six/>
-    <br/><small>no holes, unif</small>
-  </td>
-</tr>
+</div>
 
-</tbody>
-</table>
+Replace TC solver with an Elpi program
 
-To the best of my knowledge, on 1/6/2026 {style="text-align:center"}
+:: left ::
+
+* Observer on `Class` and `Instance`
+* Compiles instances into Elpi rules
+* Infers instances running an Elpi program
+
+<br/>
+
+* Tries to be principled
+* Fine with stdpp and tlc
+* Not yet fine with Iris
+
+<br/>
+
+* Checken-egg problem with benchmarks
+
+:: right ::
+
+The `Inj` class with the 13 instances
+
+![bench](/bench.png)
 
 
 ---
@@ -889,6 +771,136 @@ layout: section
 color: rocq
 ---
 
+# The good company
+
+https://github.com/rocq-community/metaprogramming-rosetta-stone
+
+---
+transition: fade
+zoom: 0.75
+level: 2
+---
+
+# Comparison
+
+<table>
+
+<thead>
+<tr style="border-bottom-width: 4px"> <th></th> <th>Elpi</th> <th>Ltac2</th> <th>MetaRocq</th> </tr>
+</thead>
+<tbody>
+
+<tr> <td>Gallina</td>
+  <td>
+    <icon-park-twotone-pie-seven/>
+    <br/><small>no mutual fix/ind</small>
+  </td>
+  <td>
+    <icon-park-twotone-round/>
+  </td>
+  <td>
+    <icon-park-twotone-round/>
+  </td>
+</tr>
+
+<tr> <td>Bound Variables</td>
+  <td>
+    <icon-park-twotone-round/>
+  </td>
+  <td>
+    <icon-park-twotone-pie-three/>
+    <br/><small>quotations</small>
+
+  </td>
+  <td>
+    <icon-park-twotone-pie-one/>
+    <br/><small>toplevel quotation</small>
+  </td>
+</tr>
+
+<tr style="border-bottom-width: 4px"> <td>Holes</td>
+  <td>
+    <icon-park-twotone-round/>
+  </td>
+  <td>
+    <icon-park-twotone-pie-five/>
+    <br/><small>tactic monad</small>
+
+  </td>
+  <td>
+    <icon-park-twotone-pie-one/>
+    <br/><small>only AST</small>
+  </td>
+</tr>
+
+<tr> <td>Proof API</td>
+  <td>
+    <icon-park-twotone-pie-six/>
+    <br/><small>weak ltac1 bridge</small>
+  </td>
+  <td>
+    <icon-park-twotone-round/>
+    <br/><small>(sufficiently close)</small>
+  </td>
+  <td>
+    <icon-park-twotone-pie-one/>
+    <br/><small>only TC search, obligations</small>
+  </td>
+</tr>
+
+<tr style="border-bottom-width: 4px"> <td>Vernacular API</td>
+  <td>
+    <icon-park-twotone-pie-seven/>
+    <br/><small>no notations</small>
+  </td>
+  <td>
+    <material-symbols-circle-outline/>
+  </td>
+  <td>
+    <icon-park-twotone-pie-three/>
+    <br/><small>only env, obligations</small>
+  </td>
+</tr>
+
+<tr style="border-bottom-width: 4px"> <td>Elaborator API</td>
+  <td>
+    <icon-park-twotone-pie-six/>
+    <br/><small>no error locations</small>
+  </td>
+  <td>
+    <material-symbols-circle-outline/>
+  </td>
+  <td>
+    <material-symbols-circle-outline/>
+  </td>
+</tr>
+
+
+<tr style="border-bottom-width: 4px"> <td>Reasoning logic</td>
+  <td>
+    <icon-park-twotone-pie-one/>
+    <br/><small>Abella-mode</small>
+  </td>
+  <td>
+    <material-symbols-circle-outline/>
+  </td>
+  <td>
+    <icon-park-twotone-pie-six/>
+    <br/><small>no holes, unif</small>
+  </td>
+</tr>
+
+</tbody>
+</table>
+
+To the best of my knowledge, on 1/6/2026 {style="text-align:center"}
+
+
+---
+layout: section
+color: rocq
+---
+
 # Conclusion
 
 ---
@@ -900,13 +912,15 @@ level: 2
 
 <br/>
 
-## Extension language
-  - Use a language (ony) when it is a good fit
+## As an extension language
+  - A lot of Rocq APIs
+  - Many hooks into Rocq
+  - Used in production
+  - Used to experiment with designs
   
-## Rule-based is a good fit for
-  - HOAS (binders and local context)
-  - prover logical environment (global context)
-  - (meta) meta programming (homoiconicity)
+## As a programming language
+  - rule based (binders, databases)
+  - could use some restyling (unless you wear vintage)
 
 
 ---
@@ -920,32 +934,8 @@ level: 2
 - More hooks
   - printing (box language already bound)
   - elaborator (locations for error reporting)
-- Better syntax
-````md magic-move
-
-```elpi
-map F [] [].
-map F [X|XS] [Y|YS] :- F X Y, map F XS YS.
-```
-
-```elpi
-map F [] R :- R = [].
-map F [X|XS] R :- R = [{F X}|{map F XS}].
-```
-
-```elpi
-map F [] R :- R = [].
-map F [X|XS] R :- F X Y, map F XS YS, R = [Y|YS].
-```
-
-
-```elpi
-func map (A -> B), list A -> list B.
-map F [] := [].
-map F [X|XS] := [F X|map F XS].
-```
-
-````
+- (more) modern syntax
+  - students did not suffer in vain
 - Memoization (tabling via SLG)
   - no good public benchmark, but BedRock/BlueRock/SkyLabs-AI needs it
   - loop detection could help beginners
@@ -1044,10 +1034,10 @@ image: readme.png
 
 # Thanks for listening! {style="text-align:center"}
 
+<br/>
 
 ![Logo](/logo.png)
 
 
-<br/>
 <br/>
  https://github.com/LPCIC/coq-elpi/ 
